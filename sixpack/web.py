@@ -4,6 +4,7 @@ from flask import Flask
 from flask import render_template, abort, request, url_for, redirect, jsonify, make_response
 from flask.ext.seasurf import SeaSurf
 from flask.ext.assets import Environment, Bundle
+from flask.ext.cors import CORS
 from flask_debugtoolbar import DebugToolbarExtension
 from markdown import markdown
 
@@ -19,6 +20,7 @@ import re
 app = Flask(__name__)
 app.config['CSRF_DISABLE'] = cfg.get('csrf_disable', False)
 
+cors = CORS(app)
 csrf = SeaSurf(app)
 
 js = Bundle('js/vendor/jquery.js', 'js/vendor/d3.js',
